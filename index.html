@@ -34,8 +34,12 @@ a{color:var(--ink);text-decoration:none}
 .launch h1{margin:0;font-size:clamp(28px,6vw,44px);line-height:1.15;font-weight:800}
 .launch h1 span{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
 .launch p{margin:0;color:#4F4843;max-width:520px}
-.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.hero-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.hero-art{display:flex;align-items:flex-end}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:12px}
+html,body{overflow-x:hidden;max-width:100%}
+a,button{-webkit-tap-highlight-color:rgba(226,71,29,.15);touch-action:manipulation}
+@media (max-width:520px){.pbar .crumb{display:none}.pbar{justify-content:space-between}.hero-art svg{max-width:96px;max-height:96px}}
 .tile{display:flex;align-items:center;gap:14px;padding:16px;border-radius:22px;background:#fff;border:1px solid var(--line);transition:transform .15s,box-shadow .15s}
 .tile:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(226,71,29,.12)}
 .tile-ic{width:52px;height:52px;border-radius:50%;background:#FFF1E3;display:grid;place-items:center;flex:none}
@@ -48,8 +52,8 @@ a{color:var(--ink);text-decoration:none}
 .is-mobile{display:flex;justify-content:center;padding:24px 16px 40px}
 .is-mobile .frame{width:390px;border-radius:40px;overflow:hidden;box-shadow:0 0 0 10px #2E2A27,0 30px 60px rgba(58,53,50,.25);background:#fff;flex:none}
 @media (max-width:700px){
-  .is-mobile{padding:0;display:block}
-  .is-mobile .frame{border-radius:0;box-shadow:none;transform-origin:top left}
+  .is-mobile{padding:0;display:block;overflow:hidden}
+  .is-mobile .frame{border-radius:0;box-shadow:none;transform-origin:0 0}
 }
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:70;background:#3A3532;color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:700;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center}
 .toast.show{opacity:1}
@@ -65,7 +69,7 @@ a{color:var(--ink);text-decoration:none}
 <div class="menu" id="menu" hidden><div class="panel"><a href="#" style="font-weight:800">← Trang bắt đầu</a><div class="m-group"><span class="m-label">Phụ huynh</span><a href="#PH_DangNhap" data-s="PH_DangNhap">Đăng nhập</a><a href="#Auth_ChonVaiTro" data-s="Auth_ChonVaiTro">Chọn vai trò</a><a href="#PH_HomNay" data-s="PH_HomNay">Hôm nay</a><a href="#PH_BangTin" data-s="PH_BangTin">Bảng tin lớp</a><a href="#PH_BaiTap" data-s="PH_BaiTap">Nộp bài tập</a><a href="#PH_HocPhi" data-s="PH_HocPhi">Học phí</a></div><div class="m-group"><span class="m-label">Học sinh</span><a href="#HS_HomNay" data-s="HS_HomNay">Học sinh · Hôm nay</a><a href="#HS_BaiTap" data-s="HS_BaiTap">Học sinh · Bài tập & nhận xét</a><a href="#HS_TaiLieu" data-s="HS_TaiLieu">Học sinh · Tài liệu & chứng nhận</a></div><div class="m-group"><span class="m-label">Giáo viên</span><a href="#GV_HomNay" data-s="GV_HomNay">Hôm nay</a><a href="#GV_DiemDanh" data-s="GV_DiemDanh">Điểm danh</a><a href="#GV_DoiLich" data-s="GV_DoiLich">Đề nghị đổi lịch</a><a href="#GV_ThuLao" data-s="GV_ThuLao">Thù lao</a></div><div class="m-group"><span class="m-label">Giáo viên cộng tác</span><a href="#GV_LoiMoi" data-s="GV_LoiMoi">Lời mời dạy (cộng tác)</a></div><div class="m-group"><span class="m-label">Quản trị</span><a href="#Main" data-s="Main">Tổng quan</a><a href="#Admin_LichHoc" data-s="Admin_LichHoc">Lịch học tuần</a><a href="#Admin_DuyetBuoi" data-s="Admin_DuyetBuoi">Duyệt buổi dạy</a><a href="#Admin_ChamCong" data-s="Admin_ChamCong">Đối soát thù lao</a><a href="#Admin_HocVien" data-s="Admin_HocVien">Hồ sơ học viên</a><a href="#Admin_CRM" data-s="Admin_CRM">Tuyển sinh</a><a href="#Admin_DanhGiaGV" data-s="Admin_DanhGiaGV">Đánh giá năng lực giáo viên</a><a href="#Admin_BaoGia" data-s="Admin_BaoGia">Báo giá đối tác</a></div><div class="m-group"><span class="m-label">Hệ thống thiết kế</span><a href="#DesignSystem" data-s="DesignSystem">Hệ thống thiết kế PUCA</a></div></div></div>
 <main>
 <div class="launch" id="launch"><div class="in">
-  <div class="hero-row"><div style="display:flex;flex-direction:column;gap:10px"><span class="note" style="font-weight:800;letter-spacing:.14em">PUCA DIGITAL · BẢN THIẾT KẾ TƯƠNG TÁC</span><h1>Chọn vai trò để<br><span>trải nghiệm thử</span></h1></div><span style="display:flex;align-items:flex-end">
+  <div class="hero-row"><div style="display:flex;flex-direction:column;gap:10px"><span class="note" style="font-weight:800;letter-spacing:.14em">PUCA DIGITAL · BẢN THIẾT KẾ TƯƠNG TÁC</span><h1>Chọn vai trò để<br><span>trải nghiệm thử</span></h1></div><span class="hero-art">
 
 <span style="display: inline-flex; width: 120px; height: 120px; flex: none; line-height: 0; opacity: 1;">
 
@@ -13680,7 +13684,9 @@ Thêm lead</button>
   function fit(){
     var f = cur && document.querySelector('#s-' + cur + '.is-mobile .frame');
     if (!f) return;
-    if (window.innerWidth <= 700) { var z = window.innerWidth / 390; f.style.zoom = z; } else { f.style.zoom = ''; }
+    var w = document.documentElement.clientWidth, box = f.parentElement;
+    if (w <= 700) { var k = w / 390; f.style.transform = 'scale(' + k + ')'; box.style.height = Math.ceil(f.offsetHeight * k) + 'px'; }
+    else { f.style.transform = ''; box.style.height = ''; }
   }
   function show(id){
     if (cur) { var o = document.getElementById('s-' + cur); if (o) o.hidden = true; }
@@ -13698,9 +13704,41 @@ Thêm lead</button>
     var el = cur && document.querySelector('#s-' + cur + ' [id="' + h + '"]');
     if (el) el.scrollIntoView({behavior:'smooth'});
   }
+  function isOn(el){ return el.getAttribute('aria-selected') === 'true' || el.getAttribute('aria-checked') === 'true' || /gradient|background: #FFF6EC|border-bottom: 2px|solid #EE6A1F|solid #E2471D/.test(el.getAttribute('style') || ''); }
+  function go(id, ms){ setTimeout(function(){ location.hash = id; }, ms || 900); }
+  var actions = [
+    [/Nhận buổi|Nhận lớp/, 'Đã nhận, buổi dạy đã vào lịch của bạn', 'GV_HomNay'],
+    [/Từ chối/, 'Đã từ chối lời mời'],
+    [/Kết thúc buổi/, 'Đã gửi điểm danh và nhận xét tới phụ huynh', 'GV_HomNay'],
+    [/Gửi đề nghị/, 'Đã gửi đề nghị, chờ điều phối duyệt', 'GV_HomNay'],
+    [/Nộp bài/, 'Đã nộp bài, cô sẽ nhận xét trong app'],
+    [/Sao chép/, 'Đã sao chép nội dung chuyển khoản'],
+    [/Duyệt/, 'Đã duyệt'],
+    [/Khóa kỳ/, 'Đã khóa kỳ, bảng kê đã gửi giáo viên'],
+    [/Xuất|PDF/, 'Đang tạo file…'],
+    [/Gửi/, 'Đã gửi'],
+    [/Lưu/, 'Đã lưu'],
+    [/Chuyển thành học viên/, 'Đã tạo hồ sơ học viên', 'Admin_HocVien']
+  ];
   document.addEventListener('click', function(e){
-    var b = e.target.closest('button, input[type=submit]');
-    if (b && !b.closest('.pbar') && !b.closest('.menu')) { e.preventDefault(); say('Bản demo: thao tác này sẽ chạy ở bản thật'); }
+    var b = e.target.closest('button');
+    if (!b || b.closest('.pbar') || b.closest('.menu')) return;
+    e.preventDefault();
+    var grp = b.closest('[role=radiogroup],[role=tablist]');
+    if (grp) {
+      var opts = Array.prototype.filter.call(grp.querySelectorAll('button'), function(x){ return x.closest('[role=radiogroup],[role=tablist]') === grp; });
+      var sel = opts.filter(isOn)[0];
+      if (sel && sel !== b) {
+        var st = sel.getAttribute('style'); sel.setAttribute('style', b.getAttribute('style')); b.setAttribute('style', st);
+        ['aria-selected','aria-checked'].forEach(function(a){ if (sel.hasAttribute(a)) { sel.setAttribute(a,'false'); b.setAttribute(a,'true'); } });
+      }
+      return;
+    }
+    var t = (b.textContent || b.getAttribute('aria-label') || '').trim();
+    for (var i = 0; i < actions.length; i++) {
+      if (actions[i][0].test(t)) { say(actions[i][1]); if (actions[i][2]) go(actions[i][2]); return; }
+    }
+    say(t ? 'Đã chọn: ' + t.slice(0, 40) : 'Đã ghi nhận');
   });
   document.getElementById('openMenu').onclick = function(){ menu.hidden = false; };
   menu.onclick = function(e){ if (e.target === menu) menu.hidden = true; };
